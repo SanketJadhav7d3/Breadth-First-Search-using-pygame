@@ -1,12 +1,13 @@
 
-from PathPlanning.window import Window
+from PathFinding.window import Window
+from PathFinding.dijkstra import Dijkstra
 import pygame
 import sys
 
 if __name__ == "__main__":
 
-    pygame.init()
 
-    win = Window(1400, 900, "dijkstra")
+    d = Dijkstra()
 
-    win.run()
+
+    d.run()

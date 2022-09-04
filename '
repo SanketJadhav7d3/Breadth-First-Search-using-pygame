@@ -5,10 +5,12 @@ import numpy as np
 
 	
 class Window:
+    pygame.font.init()
     def __init__(self, width, height, algo):
         self.width = width
         self.height = height
-        self.win = pygame.display.set_mode((self.width, self.height))
+        self.font = pygame.font.Font("freesansbold.ttf", 18)
+        self.win = pygame.display.set_mode((self.width + 250, self.height))
         self.algo = algo
         self.node_size = 20
         self.rows = self.width // self.node_size
@@ -19,6 +21,12 @@ class Window:
         # end node value
         self.end_flag = None
 
+    def render_messages(self):
+        clear_text = self.font.render("Press c to clear all nodes", True, (255, 255, 255))
+        text_area = clear_text.get_rect()
+        text_area.center = (self.width + 120, 20)
+        self.win.blit(clear_text, text_area)
+
     def show(self):
         s = self.node_size
         for i in range(self.nodes.shape[0]):
@@ -28,6 +36,7 @@ class Window:
                     pygame.draw.rect(self.win, (32,	37, 40), node, border_radius=4)
                 if self.nodes[i][j] == 1:
                     pygame.draw.rect(self.win, (104, 127, 145), node, border_radius=4)
+
 
         # draw the start and end node
         if self.start_flag is not None:
@@ -40,6 +49,9 @@ class Window:
             e_x, e_y = self.end_flag
             pygame.draw.rect(self.win, (164, 147, 146), pygame.Rect(e_x * s, e_y * s, s - 1, s - 1), 
                     border_radius=4) 
+
+        # render help messages
+        self.render_messages()
 
     def get_grid_pos(self):
         # get mouse pos
@@ -66,6 +78,11 @@ class Window:
                 if event.type == pygame.KEYDOWN:
                     if event.key == K_RETURN:
                         print(self.start_flag, self.end_flag)
+
+                    if event.key == K_c:
+                        self.nodes = np.zeros((self.rows, self.cols))
+                        self.start_flag = None
+                        self.end_flag = None
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.start_flag == None:
