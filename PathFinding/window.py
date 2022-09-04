@@ -123,8 +123,8 @@ class Window:
                         x, y = self.get_grid_pos()
                         self.start_flag = x, y
                         continue
-                    if self.end_flag == None and self.start_flag != None:
 
+                    if self.end_flag == None and self.start_flag != None:
                         x, y = self.get_grid_pos()
                         self.end_flag = x, y
                         continue
