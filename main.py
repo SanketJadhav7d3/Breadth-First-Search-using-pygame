@@ -1,11 +1,11 @@
 
 from PathFinding.window import Window
-from PathFinding.dijkstra import Dijkstra
+from PathFinding.bfs import BFS
 import pygame
 import sys
 
 if __name__ == "__main__":
 
-    d = Dijkstra()
+    d = BFS()
 
     d.run()

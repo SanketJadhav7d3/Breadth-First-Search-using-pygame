@@ -41,7 +41,7 @@ class Window:
             for j in range(self.nodes.shape[1]):
                 node = pygame.Rect(i * s, j * s, s - 1, s - 1)
                 if self.nodes[i][j] == 0:
-                    self.draw_node(i, j, (32, 37, 40))
+                    self.draw_node(i, j, (207, 255, 220))
                 if self.nodes[i][j] == 1:
                     self.draw_node(i, j, (104, 127, 145))
 
@@ -114,7 +114,7 @@ class Window:
                         self.start_flag = None
                         self.end_flag = None
 
-                    if event.key == K_s:
+                    if event.key == K_p:
                         pass
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
