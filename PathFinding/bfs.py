@@ -4,6 +4,7 @@ import pygame
 from pygame.locals import *
 from queue import Queue
 import time 
+import numpy as np
 
 
 class BFS(Window):
@@ -16,6 +17,7 @@ class BFS(Window):
 
     def flood(self):
         if self.start_flag == None or self.end_flag == None:
+            print("Start flag not initialized")
             return
 
         self.frontier.put(self.start_flag)
@@ -93,12 +95,19 @@ class BFS(Window):
                         print(self.start_flag, self.end_flag)
 
                     if event.key == K_c:
+                        # clear the screen
                         self.nodes = np.zeros((self.rows, self.cols))
                         self.start_flag = None
                         self.end_flag = None
+                        self.frontier = Queue()
+                        self.came_from = dict()
 
                     if event.key == K_f:
                         self.flood()
+
+                    if event.key == K_p:
+                        print(self.start_flag, self.end_flag)
+
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
 

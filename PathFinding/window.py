@@ -12,7 +12,7 @@ class Window:
     def __init__(self):
         self.width = 1400
         self.height = 900
-        self.font = pygame.font.Font("freesansbold.ttf", 18)
+        self.font = pygame.font.Font(pygame.font.get_default_font(), 18)
         self.win = pygame.display.set_mode((self.width + 250, self.height))
         self.node_size = 20
         self.rows = self.width // self.node_size
@@ -28,9 +28,14 @@ class Window:
             Renders help messages
         '''
         clear_text = self.font.render("Press c to clear all nodes", True, (255, 255, 255))
-        text_area = clear_text.get_rect()
-        text_area.center = (self.width + 120, 20)
-        self.win.blit(clear_text, text_area)
+        find_text = self.font.render("Press f to find path", True, (255, 255, 255))
+        find_text_area = find_text.get_rect()
+        find_text_area.center = (self.width + 120, 50)
+        clear_text_area = clear_text.get_rect()
+        clear_text_area.center = (self.width + 120, 20)
+
+        self.win.blit(clear_text, clear_text_area)
+        self.win.blit(find_text, find_text_area)
 
     def show(self):
         '''
