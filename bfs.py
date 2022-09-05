@@ -108,7 +108,6 @@ class BFS(Window):
                     if event.key == K_p:
                         print(self.start_flag, self.end_flag)
 
-
                 if event.type == pygame.MOUSEBUTTONDOWN:
 
                     if self.start_flag == None:
@@ -130,3 +129,9 @@ class BFS(Window):
                 pygame.display.update()
 
         pygame.quit()
+
+
+if __name__ == "__main__":
+    b = BFS()
+
+    b.run()
